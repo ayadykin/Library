@@ -46,17 +46,30 @@ public class BookController {
 		return bookDto;
 	}
 
+	@GetMapping("/isbn/{isbn}")
+	@JsonView(BookInfoView.class)
+	public BookDto getBookByIsbn(@PathVariable("isbn") String isbn) {
+		log.info(" -> getBookByIsbn, isbn: {}", isbn);
+		BookDto bookDto = bookService.getBookByIsbn(isbn);
+		log.info(" <- getBookByIsbn, bookDto: {}", bookDto);
+		return bookDto;
+	}
+
 	@PostMapping
 	@JsonView(BookInfoView.class)
 	public BookDto createBook(@RequestBody BookDto bookDto) {
 		log.info(" -> createBook, bookDto: {}", bookDto);
-		return bookService.createBook(bookDto);
+		bookDto = bookService.createBook(bookDto);
+		log.info(" <- createBook, bookDto: {}", bookDto);
+		return bookDto;
 	}
 
 	@PutMapping
 	@JsonView(BookInfoView.class)
 	public BookDto updateBook(@RequestBody BookDto bookDto) {
 		log.info(" -> updateBook, bookDto: {}", bookDto);
-		return bookService.updateBook(bookDto);
+		bookDto = bookService.updateBook(bookDto);
+		log.info(" <- updateBook, bookDto: {}", bookDto);
+		return bookDto;
 	}
 }

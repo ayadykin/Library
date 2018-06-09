@@ -6,30 +6,45 @@ import java.time.format.DateTimeFormatter;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ayadykin.ggstars.test.library.entity.AppFlag;
 import com.ayadykin.ggstars.test.library.entity.Author;
 import com.ayadykin.ggstars.test.library.entity.Book;
-import com.ayadykin.ggstars.test.library.entity.Genre;
 import com.ayadykin.ggstars.test.library.entity.Reward;
-import com.ayadykin.ggstars.test.library.entity.Sex;
+import com.ayadykin.ggstars.test.library.entity.enums.Genre;
+import com.ayadykin.ggstars.test.library.entity.enums.Sex;
+import com.ayadykin.ggstars.test.library.repository.AppFlagRepository;
 import com.ayadykin.ggstars.test.library.repository.AuthorRepository;
 import com.ayadykin.ggstars.test.library.repository.BookRepository;
 import com.ayadykin.ggstars.test.library.utils.Constants;
 
-@Service
+@Component
 public class Init {
+
+	private static final String APP_INITIALIZED_FLAG = "applicationInitialized";
 
 	@Autowired
 	private AuthorRepository authorRepository;
 	@Autowired
 	private BookRepository bookRepository;
+	@Autowired
+	private AppFlagRepository appFlagRepository;
 
 	@Transactional
 	@PostConstruct
-	public void init() {
+	public void startingApplication() {
+		if (!appFlagRepository.findById(APP_INITIALIZED_FLAG).isPresent()) {
+			init();
+			appFlagRepository.save(new AppFlag(APP_INITIALIZED_FLAG, true));
+		}
+	}
 
+	@Transactional
+	private void init() {
+
+		// Create books
 		Book book1 = createBook("Кавказский пленник", "1233", Genre.POEM);
 		bookRepository.save(book1);
 		Book book2 = createBook("Дубровский", "1234", Genre.PROSE);
@@ -37,6 +52,7 @@ public class Init {
 		Book book3 = createBook("Двенадцать", "1235", Genre.POEM);
 		bookRepository.save(book3);
 
+		// Create authors
 		Author author1 = createAuthor("Alexander", "Pushkin", Sex.MALE, "26.05.1799");
 		author1.addBook(book1);
 		author1.addBook(book2);
@@ -51,7 +67,7 @@ public class Init {
 		author2.addReward(createReward(2001, "Именем поэта назван астероид"));
 		authorRepository.save(author2);
 
-		Author author3 = createAuthor("Раиса", "Ахматова", Sex.FIMALE, "13.12.1928");
+		Author author3 = createAuthor("Раиса", "Ахматова", Sex.FEMALE, "13.12.1928");
 		authorRepository.save(author3);
 
 		Author author4 = createAuthor("Владимир", "Беляев", Sex.MALE, "21.03.1909");

@@ -20,6 +20,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.ayadykin.ggstars.test.library.entity.enums.Sex;
+
 import lombok.Getter;
 import lombok.Setter;
 

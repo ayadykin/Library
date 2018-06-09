@@ -15,7 +15,7 @@ public class Utils {
 	}
 
 	public static void validateId(long id) {
-		if (id < 0) {
+		if (id <= 0) {
 			throw new LibraryException(ERROR_ID);
 		}
 	}

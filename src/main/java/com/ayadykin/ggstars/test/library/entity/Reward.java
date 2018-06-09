@@ -1,5 +1,7 @@
 package com.ayadykin.ggstars.test.library.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Embeddable
-public class Reward {
+public class Reward implements Serializable {
 
 	private int year;
 	private String title;

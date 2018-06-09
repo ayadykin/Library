@@ -15,14 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.ayadykin.ggstars.test.library.entity.enums.Genre;
+
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Setter
 @Getter
-@ToString
 @Table(name = "BOOK")
 public class Book implements Serializable {
 

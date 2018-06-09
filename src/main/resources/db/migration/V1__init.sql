@@ -26,6 +26,11 @@ CREATE TABLE author_book (
 	book_id BIGINT NOT NULL
 );
 
+CREATE TABLE app_flag (
+	id VARCHAR(255) NOT NULL,
+	success INT NOT NULL
+);
+
 CREATE INDEX FK_author_book_book_id ON author_book (book_id ASC);
 
 CREATE INDEX FK_author_book_author_id ON author_book (author_id ASC);

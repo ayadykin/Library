@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import com.ayadykin.ggstars.test.library.entity.Genre;
+import com.ayadykin.ggstars.test.library.entity.enums.Genre;
 import com.ayadykin.ggstars.test.library.views.AuthorInfoView;
 import com.ayadykin.ggstars.test.library.views.AuthorShortInfoView;
 import com.ayadykin.ggstars.test.library.views.BookInfoView;
@@ -13,9 +13,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
+@ToString(exclude = {"authors"})
 public class BookDto implements Serializable {
 
 	@JsonView({BookInfoView.class, AuthorInfoView.class})
