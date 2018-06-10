@@ -39,7 +39,7 @@ GET: /book
 
 GET: /book/{book_id}
 
-** Create book ** 
+**Create book** 
 
 POST: /book
 
@@ -50,7 +50,7 @@ Body
     "genre": "POEM"
 }
 
-** Update book **
+**Update book**
 
 PUT: /book
 
@@ -75,7 +75,7 @@ GET: /author/info/short//{author_id}
 
 GET: /author/{author_id}
 
-** Create author ** 
+**Create author** 
 
 POST: /author
 
@@ -87,7 +87,7 @@ Body
     "birth_date":"12.09.1900"
 }
 
-** Update author **
+**Update author**
 
 PUT: /book
 
