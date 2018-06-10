@@ -1,5 +1,5 @@
 package com.ayadykin.ggstars.test.library.views;
 
-public interface BookInfoView extends GeneralView {
+public interface BookInfoView extends RewardView {
 
 }

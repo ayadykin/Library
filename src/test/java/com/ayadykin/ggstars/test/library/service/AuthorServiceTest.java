@@ -1,6 +1,7 @@
 package com.ayadykin.ggstars.test.library.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -15,14 +16,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ayadykin.ggstars.test.library.Application;
-import com.ayadykin.ggstars.test.library.config.WebConfiguration;
 import com.ayadykin.ggstars.test.library.dto.AuthorDto;
 import com.ayadykin.ggstars.test.library.entity.enums.Sex;
 import com.ayadykin.ggstars.test.library.exception.LibraryException;
 
 @Transactional
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { WebConfiguration.class, Application.class })
+@SpringBootTest(classes = { Application.class })
 public class AuthorServiceTest {
 
 	private final static String TEST_FIRST_NAME = "Николай";
@@ -35,7 +35,7 @@ public class AuthorServiceTest {
 	@Test
 	public void getAllAuthorsTest() {
 		List<AuthorDto> authors = authorService.getAllAuthors();
-		assertTrue(!authors.isEmpty());
+		assertFalse(authors.isEmpty());
 	}
 
 	@Test
@@ -57,7 +57,7 @@ public class AuthorServiceTest {
 		author.setSex(Sex.MALE);
 		author.setBirthDate(LocalDate.now());
 		author = authorService.createAuthor(author);
-		assertNotNull(author.getId());
+		assertTrue(author.getId() > 0);
 
 		AuthorDto authorDto = authorService.getAuthor(author.getId());
 		assertNotNull(authorDto);
@@ -71,7 +71,7 @@ public class AuthorServiceTest {
 		authorDto.setSex(Sex.MALE);
 		authorDto.setBirthDate(LocalDate.now());
 		authorDto = authorService.createAuthor(authorDto);
-		assertNotNull(authorDto.getId());
+		assertTrue(authorDto.getId() > 0);
 
 		authorDto.setFirstName(UPDATED_NAME);
 		authorDto = authorService.updateAuthor(authorDto);

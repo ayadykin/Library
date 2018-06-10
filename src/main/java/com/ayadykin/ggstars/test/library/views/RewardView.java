@@ -1,5 +1,5 @@
 package com.ayadykin.ggstars.test.library.views;
 
-public interface GeneralView {
+public interface RewardView {
 
 }

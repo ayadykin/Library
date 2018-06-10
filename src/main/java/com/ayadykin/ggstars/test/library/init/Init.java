@@ -24,6 +24,11 @@ import com.ayadykin.ggstars.test.library.utils.Constants;
 public class Init {
 
 	private static final String APP_INITIALIZED_FLAG = "applicationInitialized";
+	public static final String AUTHOR1_FIRST_NAME = "Alexander";
+	public static final String AUTHOR1_LAST_NAME = "Pushkin";
+	public static final String AUTHOR1_BIRTHDAY = "26.05.1799";
+	public static final String BOOK1_TITLE = "Кавказский пленник";
+	public static final String BOOK1_ISBN = "123456";
 
 	@Autowired
 	private AuthorRepository authorRepository;
@@ -45,7 +50,7 @@ public class Init {
 	private void init() {
 
 		// Create books
-		Book book1 = createBook("Кавказский пленник", "1233", Genre.POEM);
+		Book book1 = createBook(BOOK1_TITLE, BOOK1_ISBN, Genre.POEM);
 		bookRepository.save(book1);
 		Book book2 = createBook("Дубровский", "1234", Genre.PROSE);
 		bookRepository.save(book2);
@@ -53,7 +58,7 @@ public class Init {
 		bookRepository.save(book3);
 
 		// Create authors
-		Author author1 = createAuthor("Alexander", "Pushkin", Sex.MALE, "26.05.1799");
+		Author author1 = createAuthor(AUTHOR1_FIRST_NAME, AUTHOR1_LAST_NAME, Sex.MALE, AUTHOR1_BIRTHDAY);
 		author1.addBook(book1);
 		author1.addBook(book2);
 		author1.addReward(createReward(1937, "The town of Tsarskoye Selo was renamed Pushkin in his honour"));

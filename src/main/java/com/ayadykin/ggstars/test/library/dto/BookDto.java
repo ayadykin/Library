@@ -24,7 +24,7 @@ public class BookDto implements Serializable {
 	private long id;
 
 	@NotNull
-	@JsonView({BookInfoView.class, AuthorShortInfoView.class})
+	@JsonView({BookInfoView.class, AuthorInfoView.class, AuthorShortInfoView.class})
 	private String title;
 	@NotNull
 	@JsonView({BookInfoView.class, AuthorInfoView.class})

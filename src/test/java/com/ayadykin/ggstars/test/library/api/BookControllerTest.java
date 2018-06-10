@@ -11,13 +11,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.ayadykin.ggstars.test.library.Application;
-import com.ayadykin.ggstars.test.library.config.WebConfiguration;
 import com.ayadykin.ggstars.test.library.dto.BookDto;
 import com.ayadykin.ggstars.test.library.dto.ErrorDto;
 import com.ayadykin.ggstars.test.library.exception.LibraryException;
+import com.ayadykin.ggstars.test.library.init.Init;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = { WebConfiguration.class, Application.class })
+@SpringBootTest(classes = { Application.class })
 public class BookControllerTest extends GeneralControllerTest {
 
 	@Test
@@ -25,7 +25,8 @@ public class BookControllerTest extends GeneralControllerTest {
 		MvcResult result = mockMvc.perform(get("/book/1").with(postProcessor)).andExpect(status().isOk()).andReturn();
 		
 		BookDto bookDto = objectMapper.readValue(result.getResponse().getContentAsString(), BookDto.class);
-		assertEquals("1233", bookDto.getIsbn());
+		assertEquals(Init.BOOK1_TITLE, bookDto.getTitle());
+		assertEquals(Init.BOOK1_ISBN, bookDto.getIsbn());
 	}
 
 	@Test

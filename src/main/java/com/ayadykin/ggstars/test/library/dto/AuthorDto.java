@@ -11,7 +11,7 @@ import com.ayadykin.ggstars.test.library.utils.Constants;
 import com.ayadykin.ggstars.test.library.views.AuthorInfoView;
 import com.ayadykin.ggstars.test.library.views.AuthorShortInfoView;
 import com.ayadykin.ggstars.test.library.views.BookInfoView;
-import com.ayadykin.ggstars.test.library.views.GeneralView;
+import com.ayadykin.ggstars.test.library.views.RewardView;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -31,11 +31,11 @@ public class AuthorDto implements Serializable {
 
 	@NotNull
 	@JsonProperty(value = "first_name")
-	@JsonView({BookInfoView.class, AuthorShortInfoView.class})
+	@JsonView({BookInfoView.class, AuthorInfoView.class, AuthorShortInfoView.class})
 	private String firstName;
 	@NotNull
 	@JsonProperty(value = "last_name")
-	@JsonView({BookInfoView.class, AuthorShortInfoView.class})
+	@JsonView({BookInfoView.class, AuthorInfoView.class, AuthorShortInfoView.class})
 	private String lastName;
 	@Getter(AccessLevel.NONE)
 	@JsonView(AuthorShortInfoView.class)
@@ -47,12 +47,12 @@ public class AuthorDto implements Serializable {
 	private List<BookDto> books;
 	
 	@NotNull
-	@JsonView(BookInfoView.class)
+	@JsonView({BookInfoView.class, AuthorInfoView.class})
 	@JsonProperty(value = "birth_date")
 	@JsonFormat(pattern = Constants.DATE_FORMAT)
 	private LocalDate birthDate;
 
-	@JsonView(GeneralView.class)
+	@JsonView(RewardView.class)
 	private List<RewardDto> rewards;
 
 	public int getAge() {

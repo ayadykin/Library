@@ -1,6 +1,6 @@
 package com.ayadykin.ggstars.test.library.dto;
 
-import com.ayadykin.ggstars.test.library.views.GeneralView;
+import com.ayadykin.ggstars.test.library.views.RewardView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import lombok.Getter;
@@ -12,8 +12,8 @@ import lombok.ToString;
 @ToString
 public class RewardDto {
 	
-	@JsonView(GeneralView.class)
+	@JsonView(RewardView.class)
 	private int year;
-	@JsonView(GeneralView.class)
+	@JsonView(RewardView.class)
 	private String title;
 }
