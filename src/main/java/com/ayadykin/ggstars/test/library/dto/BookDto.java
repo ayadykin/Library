@@ -9,7 +9,9 @@ import com.ayadykin.ggstars.test.library.entity.enums.Genre;
 import com.ayadykin.ggstars.test.library.views.AuthorInfoView;
 import com.ayadykin.ggstars.test.library.views.AuthorShortInfoView;
 import com.ayadykin.ggstars.test.library.views.BookInfoView;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +34,7 @@ public class BookDto implements Serializable {
 	@NotNull
 	@JsonView({BookInfoView.class, AuthorInfoView.class})
 	private Genre genre;
-	
+	@JsonInclude(Include.NON_EMPTY)
 	@JsonView(BookInfoView.class)
 	private List<AuthorDto> authors;
 }

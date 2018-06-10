@@ -47,6 +47,7 @@ public class AuthorServiceImpl implements AuthorService {
 	@Transactional
 	public AuthorDto createAuthor(AuthorDto authorDto) {
 		log.debug(" -> createAuthor, authorDto: {}", authorDto);
+		Utils.validateIdGt(authorDto.getId());
 		Author author = mapper.dtoToEntity(authorDto, Author.class);
 		author = authorRepository.save(author);
 		return mapper.entityToDto(author, AuthorDto.class);
@@ -56,7 +57,7 @@ public class AuthorServiceImpl implements AuthorService {
 	@Transactional
 	public AuthorDto updateAuthor(AuthorDto authorDto) {
 		log.debug(" -> updateAuthor, authorDto: {}", authorDto);
-		Utils.validateId(authorDto.getId());
+		Utils.validateIdLess(authorDto.getId());
 		Author author = mapper.dtoToEntity(authorDto, Author.class);
 		author = authorRepository.save(author);
 		return mapper.entityToDto(author, AuthorDto.class);

@@ -19,6 +19,7 @@ import com.ayadykin.ggstars.test.library.views.AuthorInfoView;
 import com.ayadykin.ggstars.test.library.views.AuthorShortInfoView;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -31,6 +32,7 @@ public class AuthorController {
 
 	@GetMapping
 	@JsonView(AuthorInfoView.class)
+	@ApiOperation(value = "View a list of available authors")
 	public List<AuthorDto> getAllAuthors() {
 		log.info(" -> getAllAuthors");
 		return authorService.getAllAuthors();
@@ -38,6 +40,7 @@ public class AuthorController {
 
 	@GetMapping("/{author_id}")
 	@JsonView(AuthorInfoView.class)
+	@ApiOperation(value = "Get author", response = AuthorDto.class)
 	public AuthorDto getAuthor(@PathVariable("author_id") String id) {
 		log.info(" -> getAuthor, id: {}", id);
 		long authorId = Utils.parseId(id, LibraryException.ERROR_PARSE_AUTHOR_ID);
@@ -46,6 +49,7 @@ public class AuthorController {
 
 	@GetMapping("/info/short/{author_id}")
 	@JsonView(AuthorShortInfoView.class)
+	@ApiOperation(value = "Get author short info", response = AuthorDto.class)
 	public AuthorDto getAuthorShortInfo(@PathVariable("author_id") String id) {
 		log.info(" -> getAuthorShortInfo, id: {}", id);
 		long authorId = Utils.parseId(id, LibraryException.ERROR_PARSE_AUTHOR_ID);
@@ -54,6 +58,7 @@ public class AuthorController {
 
 	@PostMapping
 	@JsonView(AuthorInfoView.class)
+	@ApiOperation(value = "Create a author", response = AuthorDto.class)
 	public AuthorDto createAuthor(@RequestBody AuthorDto authorDto) {
 		log.info(" -> createAuthor, authorDto: {}", authorDto);
 		return authorService.createAuthor(authorDto);
@@ -61,6 +66,7 @@ public class AuthorController {
 
 	@PutMapping
 	@JsonView(AuthorInfoView.class)
+	@ApiOperation(value = "Update a author", response = AuthorDto.class)
 	public AuthorDto updateAuthor(@RequestBody AuthorDto authorDto) {
 		log.info(" -> updateAuthor, authorDto: {}", authorDto);
 		return authorService.updateAuthor(authorDto);

@@ -55,6 +55,7 @@ public class BookServiceImpl implements BookService {
 	@Transactional
 	public BookDto createBook(BookDto bookDto) {
 		log.debug(" -> createBook, bookDto: {}", bookDto);
+		Utils.validateIdGt(bookDto.getId());
 		Book book = mapper.dtoToEntity(bookDto, Book.class);
 		book = bookRepository.save(book);
 		return mapper.entityToDto(book, BookDto.class);
@@ -64,7 +65,7 @@ public class BookServiceImpl implements BookService {
 	@Transactional
 	public BookDto updateBook(BookDto bookDto) {
 		log.debug(" -> updateBook, bookDto: {}", bookDto);
-		Utils.validateId(bookDto.getId());
+		Utils.validateIdLess(bookDto.getId());
 		Book book = mapper.dtoToEntity(bookDto, Book.class);
 		book = bookRepository.save(book);
 		return mapper.entityToDto(book, BookDto.class);

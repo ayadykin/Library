@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.junit.Test;
@@ -19,6 +20,8 @@ import com.ayadykin.ggstars.test.library.Application;
 import com.ayadykin.ggstars.test.library.dto.AuthorDto;
 import com.ayadykin.ggstars.test.library.entity.enums.Sex;
 import com.ayadykin.ggstars.test.library.exception.LibraryException;
+import com.ayadykin.ggstars.test.library.init.Init;
+import com.ayadykin.ggstars.test.library.utils.Constants;
 
 @Transactional
 @RunWith(SpringRunner.class)
@@ -55,7 +58,7 @@ public class AuthorServiceTest {
 		author.setFirstName(TEST_FIRST_NAME);
 		author.setLastName(TEST_LAST_NAME);
 		author.setSex(Sex.MALE);
-		author.setBirthDate(LocalDate.now());
+		author.setBirthDate(LocalDate.parse(Init.AUTHOR1_BIRTHDAY, DateTimeFormatter.ofPattern(Constants.DATE_FORMAT)));
 		author = authorService.createAuthor(author);
 		assertTrue(author.getId() > 0);
 

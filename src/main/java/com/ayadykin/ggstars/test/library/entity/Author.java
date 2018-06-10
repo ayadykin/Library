@@ -19,6 +19,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.ayadykin.ggstars.test.library.entity.enums.Sex;
 
@@ -35,12 +37,15 @@ public class Author implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@NotEmpty
 	@Column(name = "first_name")
 	private String firstName;
 
+	@NotEmpty
 	@Column(name = "last_name")
 	private String lastName;
 
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Sex sex;
 
@@ -49,6 +54,7 @@ public class Author implements Serializable {
 			@JoinColumn(name = "book_id") })
 	private Collection<Book> books = new ArrayList<>();
 
+	@NotNull
 	@Column(name = "birth_date")
 	private LocalDate birthDate;
 

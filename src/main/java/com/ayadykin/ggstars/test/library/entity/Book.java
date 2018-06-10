@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.ayadykin.ggstars.test.library.entity.enums.Genre;
 
@@ -29,11 +31,15 @@ public class Book implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@NotEmpty
 	private String title;
 
+	@NotEmpty
 	@Column(name = "ISBN", unique = true)
 	private String isbn;
 
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Genre genre;
 
