@@ -5,7 +5,7 @@
 
 To install this application, run the following command
 
-> git clone https://github.com/oktadeveloper/okta-spring-boot-2-angular-5-example.git
+> git clone https://github.com/ayadykin/Library.git
 
 ### Maven
 
